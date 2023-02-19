@@ -1,0 +1,6 @@
+{
+    "self":"wxid_xxxxxxxx1",
+    "super_admin":["wxid_xxxxxxxx2"],
+    "admin":["wxid_xxxxxxxx3"],
+    "user": ["wxid_xxxxxxxx4"]
+}
