@@ -3,7 +3,7 @@ from plugin_interface import PluginInterface
 
 NAME = 'chatgpt'
 openai.api_key = "你自己的key"
-model = "text-davinci-003"
+gpt_model = "gpt-3.5-turbo"
 
 
 class PluginImp(PluginInterface):
@@ -24,11 +24,9 @@ class PluginImp(PluginInterface):
 
     def handle_recv_msg(self, msg, wxid=None, roomid=None, nickname=None):
         super().handle_recv_msg(msg, wxid, roomid, nickname)
-        response = openai.Completion.create(
-            engine=model,
-            prompt=msg,
-            max_tokens=1024,
-            temperature=0.5,
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": msg}]
         )
-        super().send_msg(response["choices"][0]["text"], wxid, roomid, nickname)
+        super().send_msg(response["choices"][0]["message"]["content"], wxid, roomid, nickname)
 

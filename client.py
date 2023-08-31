@@ -149,9 +149,9 @@ def handle_recv_msg(msg_json):
     if content and content[0] == '@':
         find_index = content.find('\u2005')  # \u2005是Unicode编码的空格
         at_name = content[2: find_index]
-        msg = content[find_index + 1:]
+        msg = content[find_index + 1:].strip()
     else:
-        msg = content
+        msg = content.strip()
     if not 'wxid' in msg_json:  # msg send success notify or others
         return
     elif '@chatroom' in msg_json['wxid']:
